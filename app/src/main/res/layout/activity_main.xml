@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="428dp"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:text="retrofit API &amp; Glide lib  testing"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.207"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_controller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_navbar_controllers_menu"
+        />
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentContainerView"-->
+<!--        android:name="com.example.retrofit__glide_app.glide"-->
+<!--        android:layout_width="349dp"-->
+
+<!--        android:layout_height="164dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginRight="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_controller"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textview"-->
+<!--        app:layout_constraintVertical_bias="0.826"-->
+
+<!--        tools:layout="@layout/fragment_retrofit" />-->
+
+    <fragment
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_controller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/nav_graph" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
