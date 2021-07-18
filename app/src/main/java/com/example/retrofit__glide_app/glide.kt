@@ -42,7 +42,7 @@ private var binding:FragmentGlideBinding? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    binding!!.btnLoadImg.setOnClickListener(){
+    binding!!.btnLoadImg.setOnClickListener{
 
         Glide.with(this).load(url).placeholder(R.drawable.ic_launcher_background).into(binding!!.imgViewForLoadingImg)
 

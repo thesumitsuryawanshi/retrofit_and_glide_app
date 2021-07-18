@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.retrofit__glide_app.MyAdapter.AdapterForRecyclerView
 import com.example.retrofit__glide_app.databinding.FragmentRetrofitBinding
 import com.example.retrofit__glide_app.model.API_interface
 import com.example.retrofit__glide_app.model.mydata_items
+import kotlinx.android.synthetic.main.fragment_retrofit.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,24 +24,6 @@ class Retrofit : Fragment() {
 
 
     private var binding: FragmentRetrofitBinding? = null
-
-
-//--------------------------------------------------------------------------------------------------
-//we diont need oncreate in fargment
-
-
-//    // TODO: hello brother this is new TODO
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-// ctrl alt O
-
-// ctrl alt l
-//    }
-
-    //
-//--------------------------------------------------------------------------------------------------
 
 
     override fun onCreateView(
@@ -57,6 +42,15 @@ class Retrofit : Fragment() {
     //--------------------------------------------------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val numbers:Array<String> = arrayOf("one","two","three","four","five","Six","Seven","Eight","Nine","Ten","Eleven","Tweelve","third-teen","four-teen","fifteen","six-teen","Seven-teen");
+
+        val adapter = AdapterForRecyclerView(numbers)
+
+        myrecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        myrecyclerView.adapter = adapter
+
 
 
         //make sure you are adding '/'  in BASE_URL otherwise it wont work
@@ -89,8 +83,11 @@ class Retrofit : Fragment() {
                     MyStringBuidler.append(my_fetched_data.id)
                     MyStringBuidler.append("-")
                 }
-                Log.d("mytag", "lets see thiss works or not ")
-                binding!!.textViewForDisplayingData.text = MyStringBuidler
+
+                Toast.makeText(context, "$MyStringBuidler", Toast.LENGTH_SHORT).show()
+
+                Log.d("mytag", "lets see this works or not ")
+//                binding!!.textViewForDisplayingData.text = MyStringBuidler
 
 
             }
@@ -100,8 +97,7 @@ class Retrofit : Fragment() {
             }
         })
 
-binding!!.btnToLoadData.setOnClickListener()
-{
+binding!!.btnToLoadData.setOnClickListener{
     Toast.makeText(context, "hey baby this is working . ( ahh ha )  :) ", Toast.LENGTH_SHORT).show()
 }
 
