@@ -8,8 +8,8 @@ toast msg which fetches data through retrofit API.
   # new things 
   - recycler view in fragment 
   - Creating  adapter for recycler view 
-  - creating custom layout/Model  for data in recycler view
-  - passing data to Adapter(recycler view)   from Fragment
+  - creating custom layout/Model  for data in recycler view i.e CardView
+  - passing data to Adapter(of recycler view) from Fragment
   - creating Cardview  for showing data structurally in recycler view  
   
 YT tut Reference : https://www.youtube.com/watch?v=QRCYzmXZ-QI&t=86s  
