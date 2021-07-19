@@ -1,7 +1,7 @@
 package com.example.retrofit__glide_app
 
 import android.os.Bundle
-import android.util.Log
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,40 +22,31 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Retrofit : Fragment() {
 
+    val BASE_URL = "https://jsonplaceholder.typicode.com/"    //make sure you are adding '/'  in BASE_URL otherwise it wont work
 
     private var binding: FragmentRetrofitBinding? = null
+    lateinit var myAdapterForRecyclerView: AdapterForRecyclerView
+    lateinit var linearLayoutManager: LinearLayoutManager
+
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         binding = FragmentRetrofitBinding.inflate(inflater, container, false)
         return binding!!.root
-
-
     }
 
 
-    //--------------------------------------------------------------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myrecyclerView.setHasFixedSize(true)
+        linearLayoutManager = LinearLayoutManager(context)
+        myrecyclerView.layoutManager = linearLayoutManager
 
-        val numbers:Array<String> = arrayOf("one","two","three","four","five","Six","Seven","Eight","Nine","Ten","Eleven","Tweelve","third-teen","four-teen","fifteen","six-teen","Seven-teen");
-
-        val adapter = AdapterForRecyclerView(numbers)
-
-        myrecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        myrecyclerView.adapter = adapter
-
-
-
-        //make sure you are adding '/'  in BASE_URL otherwise it wont work
-
-        val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -75,34 +66,32 @@ class Retrofit : Fragment() {
                 response: Response<List<mydata_items>?>
             ) {
 
+                Toast.makeText(context, "Data fetched Successful", Toast.LENGTH_SHORT).show()
                 val responseBody = response.body()!!
 
-                val MyStringBuidler = StringBuilder()
 
-                for (my_fetched_data in responseBody) {
-                    MyStringBuidler.append(my_fetched_data.id)
-                    MyStringBuidler.append("-")
-                }
+                myAdapterForRecyclerView = AdapterForRecyclerView(requireContext(),responseBody)
+                myAdapterForRecyclerView.notifyDataSetChanged()
+                myrecyclerView.adapter = myAdapterForRecyclerView
 
-                Toast.makeText(context, "$MyStringBuidler", Toast.LENGTH_SHORT).show()
-
-                Log.d("mytag", "lets see this works or not ")
-//                binding!!.textViewForDisplayingData.text = MyStringBuidler
-
-
+                d("mytag", "Im here in this enqueue method. ")
             }
+
 
             override fun onFailure(call: Call<List<mydata_items>?>, t: Throwable) {
-                Log.d("retrofit_issue", "onFailure : " + t.message)
+                d("retrofit_issue", "onFailure revoked & couldnt fetch data look at ref msg : " + t.message)
             }
+
         })
 
-binding!!.btnToLoadData.setOnClickListener{
-    Toast.makeText(context, "hey baby this is working . ( ahh ha )  :) ", Toast.LENGTH_SHORT).show()
-}
+        binding!!.btnToLoadData.setOnClickListener {
+            Toast.makeText(
+                context,
+                "hey baby this is working . ( ahh ha )  :) ",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
     }
-//--------------------------------------------------------------------------------------------------
-
 
 }
