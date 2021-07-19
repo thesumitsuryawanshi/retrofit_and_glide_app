@@ -9,6 +9,12 @@ check out another branch (offline one to take more ref)
 
 take ref from below Pics 
 
+# Final Result
+- showing fetched data in recyler view 
+- data is fetched from site Json placeholder
+
 ![image](https://user-images.githubusercontent.com/58788722/126144402-28c1c088-c6b4-48c1-9ecd-2771f220eb77.png)
+
+# Structure
 ![image](https://user-images.githubusercontent.com/58788722/126144415-cd5c86db-bba6-4348-bff7-7f963f75a6b0.png)
 ![image](https://user-images.githubusercontent.com/58788722/126144429-9e670515-a796-4c6b-b5e7-cc03f3175f13.png)
